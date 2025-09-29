@@ -21,7 +21,7 @@ Problem:  Write a program that keeps and manipulates a linked list of
 public class LinkedList{
 
   //instance varialbes go here (think about what you need to keep track of!)
-  new ListNode header(null, null);
+  ListNode header = new ListNode(null, null);
 
   //constructors go here
   public LinkedList(){
@@ -35,7 +35,7 @@ public class LinkedList{
     if(header == null) 
       header = new ListNode(line, null);
     else{
-      new ListNode node = header;
+      ListNode node = header;
       while(node.getNext() != null && node.getValue().compareTo(line) > 0)
         node = node.getNext();
       if(node.getNext() == null)
@@ -54,7 +54,8 @@ public class LinkedList{
     if(header == null)
       return null;
     else{
-      new ListNode node = header;
+      ListNode node = header;
+      ListNode prevNode;
       while(node.getNext() != null && !node.getValue().equals(line)){
         prevNode = node;
         node = node.getNext();

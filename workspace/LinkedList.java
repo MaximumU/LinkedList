@@ -14,18 +14,36 @@ Problem:  Write a program that keeps and manipulates a linked list of
 	Output:  the results to the screen of each menu
 	    choice, and error messages where appropriate.
 */
+
+//Code written by William Walker
+//Written on 09/27/2025
+
 public class LinkedList{
 
   //instance varialbes go here (think about what you need to keep track of!)
+  new ListNode header(null, null);
 
   //constructors go here
-
+  public LinkedList(){
+    
+  }
 
   //precondition: the list has been initialized
   //postcondition: the ListNode containing the appropriate value has been added and returned
   public ListNode addAValue(String line)
   {
-    return null;
+    if(header == null) 
+      header = new ListNode(line, null);
+    else{
+      new ListNode node = header;
+      while(node.getNext() != null && node.getValue().compareTo(line) > 0)
+        node = node.getNext();
+      if(node.getNext() == null)
+        node.setNext(new ListNode(line, null));
+      else
+        node.setNext(new ListNode(line, node.getNext()));
+      return node.getNext();
+    }
   }
 
   //precondition: the list has been initialized
@@ -33,20 +51,38 @@ public class LinkedList{
   //if the value is not in the list returns null
   public ListNode deleteAValue(String line)
   {
-    return null;
+    if(header == null)
+      return null;
+    else{
+      new ListNode node = header;
+      while(node.getNext() != null && !node.getValue().equals(line)){
+        prevNode = node;
+        node = node.getNext();
+      }
+      if(node.getNext() == null)
+        return null;
+      else
+        prevNode.setNext(node.getNext());
+      return node;
+    }
   }
 
   //precondition: the list has been initialized
   //postconditions: returns a string containing all values appended together with spaces between.
   public String showValues()
   {
-    return null;
+    String list = "";
+    new ListNode node = header;
+    while(node != null)
+      list = list + " " + node.getValue();
+      node = node.getNext();
+    return list;
   }
 
   //precondition: the list has been initialized
   //postconditions: clears the list.
   public void clear()
   {
-  
+    header = null;
   }
 }

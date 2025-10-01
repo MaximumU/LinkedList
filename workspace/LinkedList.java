@@ -21,11 +21,11 @@ Problem:  Write a program that keeps and manipulates a linked list of
 public class LinkedList{
 
   //instance varialbes go here (think about what you need to keep track of!)
-  ListNode header = new ListNode(null, null);
+  ListNode header;
 
   //constructors go here
   public LinkedList(){
-    
+    header = new ListNode(null, null);
   }
 
   //precondition: the list has been initialized
@@ -73,7 +73,7 @@ public class LinkedList{
   public String showValues()
   {
     String list = "";
-    new ListNode node = header;
+    ListNode node = header;
     while(node != null)
       list = list + " " + node.getValue();
       node = node.getNext();
@@ -85,5 +85,46 @@ public class LinkedList{
   public void clear()
   {
     header = null;
+  }
+
+  //precondition: the list has been initialized
+  //postconditions: reverses the list
+  public void reverse()
+  {
+    if (header == null)
+      return;
+    else {
+      ListNode node = header;
+      ListNode prevNode = null;
+      ListNode nextNode = header.getNext();
+      while(nextNode != null){
+        ListNode node2 = node.getNext();
+        node.setNext(prevNode);
+        nextNode.setNext(node);
+        node = node2;
+      }
+      return;
+    }
+  }
+  //precondition: List is intitialized and a number is given
+  //postcondition: Each set of n is reversed
+  public void nReverse(int n)
+  {
+    LinkedList fin = new LinkedList();
+    if (header == null)
+      return;
+    else{
+      ListNode node = header;
+      int i = 0;
+      while(header != null){}
+        LinkedList list = new LinkedList();
+        while(i > n){
+         list.addAValue(node.getValue());
+          node = node.getNext();
+         i++;
+        }
+      list.reverse();
+      }
+    }
   }
 }

@@ -31,6 +31,10 @@ public class Main{
           {
             list.clear();
           }
+           else if(input.equals("nrev"))
+          {
+            list.nReverse(3);
+          }
           else if(!input.equals("exit")){
               System.out.println("I don't know how to "+input);
           }

@@ -25,25 +25,29 @@ public class LinkedList{
 
   //constructors go here
   public LinkedList(){
-    header = new ListNode(null, null);
+    header = null;
   }
 
   //precondition: the list has been initialized
   //postcondition: the ListNode containing the appropriate value has been added and returned
   public ListNode addAValue(String line)
   {
-    if(header == null) 
+    if(header == null) {
       header = new ListNode(line, null);
+      return header;
+    }
     else{
       ListNode node = header;
-      while(node.getNext() != null && node.getValue().compareTo(line) > 0)
+      while(node != null && node.getNext() != null && node.getValue() != null && node.getValue().compareTo(line) > 0){
         node = node.getNext();
+      }
       if(node.getNext() == null)
         node.setNext(new ListNode(line, null));
       else
         node.setNext(new ListNode(line, node.getNext()));
       return node.getNext();
     }
+  
   }
 
   //precondition: the list has been initialized
@@ -74,9 +78,10 @@ public class LinkedList{
   {
     String list = "";
     ListNode node = header;
-    while(node != null)
+    while(node != null){
       list = list + " " + node.getValue();
       node = node.getNext();
+    }
     return list;
   }
 
@@ -110,19 +115,27 @@ public class LinkedList{
   //postcondition: Each set of n is reversed
   public void nReverse(int n)
   {
-    LinkedList fin = new LinkedList();
     if (header == null)
       return;
     else{
+      boolean start = false;
       ListNode node = header;
-      int i = 0;
-      while(header != null){}
+      ListNode tail;
+      while(node != null ){
         LinkedList list = new LinkedList();
-        while(i > n){
+        int i = 0;
+        while(i > n && node != null){
          list.addAValue(node.getValue());
           node = node.getNext();
-         i++;
+          i++;
         }
+      //attach list.header to be the next node of tail (where tail is the end of the last list you reversed)
+      //somehow get all of the lists together into one list
+      if(!start)
+        header = list.header;
+      start = true;
+      tail.setNext(list.header)
+      tail = list.header;
       list.reverse();
       }
     }
